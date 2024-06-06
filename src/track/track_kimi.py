@@ -1,5 +1,7 @@
+import asyncio
 import time
 
+import aiohttp
 import requests
 import json
 
@@ -8,7 +10,7 @@ url = 'https://kimi.moonshot.cn/api/chat/cp2vkrivk6g1dk1na440/completion/stream'
 headers = {
     'accept': '*/*',
     'accept-language': 'zh-CN,zh;q=0.9',
-    'authorization': 'Bearer eyJhbGciOiJIUzUxMiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJ1c2VyLWNlbnRlciIsImV4cCI6MTcxNjU0MjYyMywiaWF0IjoxNzE2NTQxNzIzLCJqdGkiOiJjcDg1aTZwcDJrMWNzNWJzZzZoMCIsInR5cCI6ImFjY2VzcyIsInN1YiI6ImNvYWhhbXFsbmw5M21mczJzbDQwIiwic3BhY2VfaWQiOiJjb2FoYW1xbG5sOTNtZnMyc2wzZyIsImFic3RyYWN0X3VzZXJfaWQiOiJjb2FoYW1xbG5sOTNtZnMyc2wzMCJ9.0ECvv11I4EMQSMezsZXyR7Wq40w1-GklMw_lvc3U1meeNeWUclJhTj-iWDfk3ff4oVY4hdZEr4nSafnloRVrUQ',
+    'authorization': 'Bearer eyJhbGciOiJIUzUxMiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJ1c2VyLWNlbnRlciIsImV4cCI6MTcxNjk4NjY0NSwiaWF0IjoxNzE2OTg1NzQ1LCJqdGkiOiJjcGJodjRiM2Flc3Vob2JrNDloZyIsInR5cCI6ImFjY2VzcyIsInN1YiI6ImNvYWhhbXFsbmw5M21mczJzbDQwIiwic3BhY2VfaWQiOiJjb2FoYW1xbG5sOTNtZnMyc2wzZyIsImFic3RyYWN0X3VzZXJfaWQiOiJjb2FoYW1xbG5sOTNtZnMyc2wzMCJ9.1bozt-U7eXRQ4l7ML0yX12dpVxWRdo_9o5PmHPTEVSToWHkQWH7w37lulagiQoowUchPaD4w1VnXgTCAeDTiKw',
     'content-type': 'application/json',
     'cookie': 'Hm_lvt_358cae4815e85d48f7e8ab7f3680a74b=1716262953; _ga=GA1.1.392308330.1716262954; _gcl_au=1.1.661196205.1716262954; _clck=sf05ux%7C2%7Cfly%7C0%7C1591; Hm_lpvt_358cae4815e85d48f7e8ab7f3680a74b=1716281443; _ga_YXD8W70SZP=GS1.1.1716281442.2.1.1716281444.0.0.0; _clsk=16ewohd%7C1716281445297%7C2%7C0%7Ci.clarity.ms%2Fcollect',
     'origin': 'https://kimi.moonshot.cn',
@@ -26,13 +28,16 @@ headers = {
     'x-traffic-id': 'coahamqlnl93mfs2sl40'
 }
 
+question = "写一段python代码"
 data = {
     "messages": [
-        {"role": "user", "content": "写一段python代码"}],
+        {"role": "user", "content": question}],
     "refs": [],
     "use_search": False,
     "kimiplus_id": "kimi"
 }
+
+print(question)
 
 response = requests.post(url, headers=headers, json=data)
 
@@ -60,7 +65,7 @@ if response.status_code == 200:
 
                     # 假设正确的编码是UTF-8，现在我们使用UTF-8解码
                     correctly_encoded_str = wrong_encoded_bytes.decode('utf-8')
-                    print(correctly_encoded_str)
+                    print(correctly_encoded_str, end='')
                 except Exception as err:
                     print(text_, end='')
 

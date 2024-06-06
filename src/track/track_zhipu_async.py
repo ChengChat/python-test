@@ -1,9 +1,7 @@
 import asyncio
-import time
+import json
 
 import aiohttp
-import requests
-import json
 
 from src.util.pretty_print import Pretty_Print
 
@@ -11,7 +9,7 @@ Pp = Pretty_Print()
 
 headers = {
     'Accept-Language': 'zh-CN,zh;q=0.9',
-    'Authorization': 'Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiJlZTUxNGU4MDg4NmY0OWMwOTI5MGI0ZjZhYzdkZGVmNSIsImV4cCI6MTcxNjYzMTk3NywibmJmIjoxNzE2NTQ1NTc3LCJpYXQiOjE3MTY1NDU1NzcsImp0aSI6ImNlYTUxODk1MTI5NzRjZGZhNTFiYzgxY2FmOGU1NjVjIiwidWlkIjoiNjYwMTcyNDZlN2UxZTAxNWYzNDY4MDIyIiwidHlwZSI6ImFjY2VzcyJ9.UWdMSQHLcLCNt5rk-7EAXjKXrh9ar8569Xn8NOddHxY',
+    'Authorization': 'Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiJlZTUxNGU4MDg4NmY0OWMwOTI5MGI0ZjZhYzdkZGVmNSIsImV4cCI6MTcxNzA1ODQ5OCwibmJmIjoxNzE2OTcyMDk4LCJpYXQiOjE3MTY5NzIwOTgsImp0aSI6ImMxYWZjZmM2Yzk1ZTQ0NTdhM2FkZjBmNGE4NWViMDkwIiwidWlkIjoiNjYwMTcyNDZlN2UxZTAxNWYzNDY4MDIyIiwidHlwZSI6ImFjY2VzcyJ9.nUzIEVxQJeJ21UiUv-uDiaxxajBDcCZdRCuNgnAK3a4',
     'Connection': 'keep-alive',
     'Content-Type': 'application/json',
     'Cookie': 'acw_tc=784e2c9417158561203907114e2970268ee86812441b79804f500c942d2926; _ga_PMD05MS2V9=GS1.1.1715856129.19.0.1715856129.0.0.0; chatglm_token=eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJmcmVzaCI6ZmFsc2UsImlhdCI6MTcxNTg1NjE1MSwianRpIjoiYTQzNGY2MDctYWM2NS00Yjk1LTk1YWUtMDZlYjkxZTYwNDI2IiwidHlwZSI6ImFjY2VzcyIsInN1YiI6ImVlNTE0ZTgwODg2ZjQ5YzA5MjkwYjRmNmFjN2RkZWY1IiwibmJmIjoxNzE1ODU2MTUxLCJleHAiOjE3MTU5NDI1NTEsInVpZCI6IjY2MDE3MjQ2ZTdlMWUwMTVmMzQ2ODAyMiIsInVwbGF0Zm9ybSI6ImlPUyIsInJvbGVzIjpbInVuYXV0aGVkX3VzZXIiXX0.n4B1ECg6PPwgnSBgg8Q_Sn-tOcBuv1O5H-e-jCuxxYs;',
@@ -24,7 +22,7 @@ url = 'https://chatglm.cn/chatglm/backend-api/assistant/stream'
 
 # 请求体
 # question = "1+1"
-question = "python打印出data：的数据是什么类型"
+question = "你叫什么"
 
 payload = {
     "assistant_id": "65940acff94777010aa6b796",
